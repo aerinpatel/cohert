@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo app</title>
+</head>
+<body>
+    
+    <h1>todo app</h1>
+    <input type="text" class="todo-input">
+    <button class="add-todo-btn" onclick="addTodo()" >add</button>
+    <button onclick="deletelastTodo()">delete Last todo</button>
+    <button onclick="deletefirstTodo()">delete first todo</button>
+    <div class="todo-list"></div>
+    
+    <!-- <script src="script.js"></script> -->
+    <script>
+    const todos = [];
+
+    function addTodo() {
+        console.log(document.querySelector(".todo-input").value);
+        todos.push({
+            title: document.querySelector(".todo-input").value
+        });
+        render();
+    }
+    function deletefirstTodo(){
+        todos.splice(0,1);
+        render();
+    }
+    function deletelastTodo(){
+        todos.splice(todos.length - 1,todos.length);
+        render();
+    }
+    function deleteTodo(index){
+        todos.splice(index,1);
+        render();
+    }
+
+
+
+    function createtodo(todo,i){
+        const divel = document.createElement("div");
+        const h1el = document.createElement("h1");
+        const btn = document.createElement("button");
+
+        h1el.innerHTML = todo.title;
+        btn.innerHTML = "Delete";
+        // btn.onclick() = deleteTodo(i);
+        btn.setAttribute("onclick","deleteTodo("+ i +")");
+        divel.appendChild(h1el);
+        divel.appendChild(btn);
+        return divel;
+    }
+
+    function render(){
+        document.querySelector(".todo-list").innerHTML = " ";
+        for (let i = 0; i < todos.length; i++) {
+            const element = createtodo(todos[i],i);
+            document.querySelector(".todo-list").appendChild(element);
+        }
+
+    }
+
+    
+
+    </script>
+</body>
+
+</html>

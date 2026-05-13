@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to-do</title>
+    <!-- <link rel="stylesheet" href="todo.css"> -->
+     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <h1>hello there, welcome to my to-do list</h1>
+    </header>
+    
+    <div id="todo-list">
+        <div class="todo-adder">
+            <input type="text" name="to-do-adder" id="list">
+            <button onclick="addTodo()">add to-do</button>
+        </div>
+        <div class="to do-1">
+            <h4>1. take bath</h4><button onclick="deletetodo(1)"><i class="fa-solid fa-check"></i></button>
+        </div>
+        <div class="to do-2">
+            <h4>2. do dsa</h4><button onclick="deletetodo(2)"><i class="fa-solid fa-check"></i></button>
+        </div>
+        <div class="to do-3">
+            <h4>3. complete one harkirat video</h4><button onclick="deletetodo(3)"><i class="fa-solid fa-check"></i></button>
+        </div>
+        
+    </div>
+    
+
+    <script>
+        
+        let count = 1;
+        let todocount = 4;
+        function addTodo(){
+            //create todo div
+            let new_todo = document.createElement("div");
+            new_todo.className = "to do-" + todocount;
+            // new_todo.style.display = 'flex';
+            document.getElementById("todo-list").appendChild(new_todo);
+            
+            //input from user
+            const inputEl = document.getElementById("list");
+            let new_todo_input = document.createElement("h4");
+            new_todo_input.textContent = todocount + ". " + inputEl.value;
+            document.querySelector(".do-" + todocount).appendChild(new_todo_input);
+
+            //button
+            let btn = document.createElement("button");
+            document.querySelector(".do-" + todocount).appendChild(btn);
+            btn.innerHTML = "<i class='fa-solid fa-check'></i>";
+            btn.setAttribute("onclick","deletetodo("+todocount+")")
+            todocount++;
+        }
+        
+        // setInterval(counter(),1000);     // call function counter every one second
+        // setTimeout();                    // calls fuction counter after one second just once
+        // counter();
+        function deletetodo(index){
+            document.getElementById("todo-list").removeChild(document.querySelector(".do-"+index));
+        }
+        
+    </script>
+</body>
+</html>

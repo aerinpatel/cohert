@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+    
+}
+body{
+    background-color: aquamarine;
+}
+header{
+    display: flex;
+    background-color: ;
+    justify-content: center;
+    align-content: center;
+
+}
+h1{
+    font-size: 2em;
+
+}
+#todo-list{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    /* width: 100vw; */
+    
+}
+.to{
+    background-color: #fff;
+    border-radius: 30px;
+    border: 4px solid #000000;
+    height: 50px;
+    background-color: rgb(155, 255, 222);
+    width: 60vw;
+    margin: 4px;
+    display: flex;
+    align-items: center;
+    padding-left: 20%;
+}
+button{
+    background-color: #fff;
+    border: solid black;
+    border-radius: 25px;
+    display: flex;
+    margin-left: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
