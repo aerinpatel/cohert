@@ -5,6 +5,8 @@ import mongoose from "mongoose";
 import { authMiddleware } from "./middleware";
 import * as jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
+import * as bcrypt from 'bcrypt';
+import { stripTypeScriptTypes } from "node:module";
 // dotenv.config();
 // const x:string = process.env.DATABASE_CONN||"";
 // mongoose.connect(x);
@@ -12,6 +14,9 @@ import * as dotenv from "dotenv";
 //   name:'aerin',pass:'12345'
 // },process.env.JWT_SECRET || "12345");
 // console.log(smtn);
+
+
+
 const app = express();
 app.use(express.json());
 
@@ -116,7 +121,38 @@ app.delete(
   },
 );
 
+app.post("/api/v1/brain/share",authMiddleware,async(req:Request,res:Response)=>{
+  try{
+    //@ts-ignore
+    // const userId = req.userId;
+    // const data = await Content.find({userId:userId});
+    // const strData:string = JSON.stringify(data);
+    // jwt.sign(strData,)
+    const share = req.body.share;
+    if(share){
+      Link.create({
+        //@ts-ignore
+        userId: req.userId,
+        hash: "hello",
+      })
+    }else{
+      Link.deleteOne({
+        //@ts-ignore
+        userId:req.userId
+      })
+    }
+    
+
+  }catch(e){console.log({msg:"things go wrong in /share POST"});}
+});
+
+app.post("/api/v1/brain/:shareLink",authMiddleware,async(req:Request,res:Response) => {
+
+});
+
 app.listen("3000", () => {
   console.log("server running on 3000");
 });
 // ts,mono,jwt,exp
+
+
